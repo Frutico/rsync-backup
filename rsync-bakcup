@@ -5,10 +5,10 @@
 # 1. Some files have no hash sums.  Such as a special file /dev/zero or similar
 # 2. There are situations when we do have empty directories in the source or target directory
 # 3. The source file can be a symbolic link. Another possibility is files with more than one hard link in the source directory
-# 4. We need to keep directories in sync even if only the file's metadata changed.
+# 4. We need to keep directories in sync even if only the file's metadata changes.
 #     For example, one of the times (creation, modification, or access).
-# 5. We need to remove from destination directory files and directories that have been deleted from the source directory
-# It is clear that in the aggregate these tasks are too complicated to implement in code fast enough.
+# 5. We need to remove from the destination directory files and directories that have been deleted from the source directory
+# It is clear that in the aggregate these tasks are too complicated to be implement in code fast enough.
 # Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
 # and assign periodic execution to one of the standard system daemons: cron or, preferably, anacron.
 # So let's start by creating a shell script that does a copy-once:
