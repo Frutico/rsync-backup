@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# The task at hand cannot be solved by merely calculating hash sums (md5sum *)
+# Why is that?  Because:
+# 1. Some files have no hash sums.  Such as a special file /dev/zero or similar
+# 2. There are situations when we do have empty directories in the source or target directory
+# 3. The source file can be a symbolic link. Another possibility is files with more than one hard link in the source directory
+# 4. We need to keep directories in sync even if only the file's metadata changed.
+#     For example, one of the times (creation, modification, or access).
+# 5. We need to remove from destination directory files and directories that have been deleted from the source directory
+# It is clear that in the aggregate these tasks are too complicated to implement in code fast enough.
+# Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
+#
+# So let's start by creating a shell script that does a backup:
+#
+# It takes four parameters:
+# 1. Source directory
+# 2. Destination directory
+# 3. Full path to the log file
+# 4. Interval in seconds
+
+[[ x$1 == x ]] & exit 1
+rsync -a -H -A -X -S -v --delete "$1"/ "$2" >> "$3"
