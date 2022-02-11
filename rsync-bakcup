@@ -10,14 +10,14 @@
 # 5. We need to remove from destination directory files and directories that have been deleted from the source directory
 # It is clear that in the aggregate these tasks are too complicated to implement in code fast enough.
 # Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
+# and assign periodic execution to one of the standard system daemons: cron or, preferably, anacron.
+# So let's start by creating a shell script that does a copy-once:
 #
-# So let's start by creating a shell script that does a backup:
-#
-# It takes four parameters:
+# It takes three parameters:
 # 1. Source directory
 # 2. Destination directory
 # 3. Full path to the log file
-# 4. Interval in seconds
+# 
 
 [[ x$1 == x ]] & exit 1
 rsync -a -H -A -X -S -v --delete "$1"/ "$2" >> "$3"
