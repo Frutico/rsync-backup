@@ -8,7 +8,7 @@
 # 4. We need to keep directories in sync even if only the file's metadata changes.
 #     For example, one of the times (creation, modification, or access).
 # 5. We need to remove from the destination directory files and directories that have been deleted from the source directory
-# It is clear that in the aggregate these tasks are too complicated to be implement in code fast enough.
+# It is clear that in the aggregate these tasks are too complicated to be implemented in code fast enough.
 # Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
 # and assign periodic execution to one of the standard system daemons: cron or, preferably, anacron.
 # So let's start by creating a shell script that does a copy-once:
