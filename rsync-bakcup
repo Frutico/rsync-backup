@@ -11,6 +11,9 @@
 # It is clear that in the aggregate these tasks are too complicated to be implemented in code fast enough.
 # Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
 # and assign periodic execution to one of the standard system daemons: cron or, preferably, anacron.
+# 6. Source and destination directories can reside on different hosts, so we need to avoid unnecessary network transfers that
+# would be inevitable if we would calculate hashes on one side.
+#
 # So let's start by creating a shell script that does a copy-once:
 #
 # It takes three parameters:

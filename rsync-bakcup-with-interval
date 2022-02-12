@@ -10,6 +10,8 @@
 # 5. We need to remove from the destination directory files and directories that have been deleted from the source directory
 # It is clear that in the aggregate these tasks are too complicated to be implemented in code fast enough.
 # Therefore, for Unix-like operating systems, it seems appropriate to use the standard rsync utility,
+# 6. Source and destination directories can reside on different hosts, so we need to avoid unnecessary network transfers that
+# would be inevitable if we would calculate hashes on one side.
 #
 # So let's start by creating a shell script that does a backup:
 #
